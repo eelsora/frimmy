@@ -17,8 +17,31 @@ repositories {
     mavenCentral()
 }
 
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.ai:spring-ai-bom:1.0.0"
+    }
+}
+
 dependencies {
+    // REST API 엔드포인트 제공 (IngredientController, RecipeController)
     implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    // 재료 데이터 영속화 (Ingredient 엔티티 → PostgreSQL)
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+    // PostgreSQL JDBC 드라이버 (런타임에만 필요)
+    runtimeOnly 'org.postgresql:postgresql'
+
+    // OpenAI ChatClient 자동 설정 (GPT 모델로 레시피 추천)
+    implementation 'org.springframework.ai:spring-ai-starter-model-openai'
+
+    // LangGraph4j 코어 — 에이전트 상태 그래프 정의 (노드, 엣지, 상태 관리)
+    implementation 'org.bsc.langgraph4j:langgraph4j-core:1.6.0-beta5'
+
+    // LangGraph4j Spring AI 통합 — Spring AI ChatClient를 LangGraph4j 노드에서 사용
+    implementation 'org.bsc.langgraph4j:langgraph4j-spring-ai:1.6.0-beta5'
+
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }

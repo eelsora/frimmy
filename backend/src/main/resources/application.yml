@@ -2,5 +2,22 @@ spring:
   application:
     name: frimmy-backend
 
+  datasource:
+    url: jdbc:postgresql://localhost:5432/frimmy
+    username: ${DB_USERNAME:frimmy}
+    password: ${DB_PASSWORD:frimmy}
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+
+  ai:
+    openai:
+      api-key: ${OPENAI_API_KEY}
+      chat:
+        options:
+          model: gpt-4o
+
 server:
   port: 8080
