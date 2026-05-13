@@ -1,36 +1,56 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Frimmy Frontend
+
+냉장고 재료 기반 AI 레시피 추천 서비스의 프론트엔드 (PWA)
+
+## Tech Stack
+
+| | Stack | Version |
+|---|---|---|
+| **Framework** | Next.js | 15.5.18 |
+| **UI** | React | 19.2.4 |
+| **Language** | TypeScript | 5.x |
+| **Styling** | Tailwind CSS | 4.x |
+| **PWA** | next-pwa | 5.6.0 |
+
+## PWA
+
+Progressive Web App으로 구성되어 웹 브라우저에서 앱처럼 사용할 수 있습니다.
+
+- **Service Worker**: 빌드 시 `next-pwa`가 `public/sw.js`를 자동 생성. 네트워크 요청을 가로채는 프록시 역할
+- **오프라인 캐싱**: 온라인 시 리소스를 캐시에 저장하고, 오프라인 시 캐시에서 제공
+- **앱 설치**: `manifest.json`을 통해 홈 화면에 추가 가능 (standalone 모드)
+
+## 프로젝트 구조
+
+```
+frontend/
+├── src/app/            # App Router 페이지
+├── public/
+│   ├── manifest.json   # PWA 매니페스트
+│   └── icons/          # 앱 아이콘 (192x192, 512x512)
+├── types/              # 커스텀 타입 선언
+├── next.config.ts      # Next.js + PWA 설정
+└── tsconfig.json
+```
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js 18+
+
+### 실행
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev        # http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 빌드
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm run build
+npm run start      # 프로덕션 서버 (PWA 동작 확인용)
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+> PWA(Service Worker)는 프로덕션 빌드에서만 동작합니다. `npm run dev`에서는 비활성화됩니다.
