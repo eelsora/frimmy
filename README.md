@@ -1,6 +1,6 @@
 # Frimmy
 
-Frontend + Backend 모노레포 프로젝트
+Frontend와 Backend를 하나의 저장소에서 관리하는 멀티 프로젝트 구조
 
 ## Tech Stack
 
