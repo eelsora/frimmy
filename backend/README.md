@@ -8,8 +8,8 @@
 |---|---|---|
 | **Language** | Java | 21 |
 | **Framework** | Spring Boot | 3.4.5 |
-| **AI** | Spring AI (OpenAI) | 1.0.0 |
-| **Agent** | LangGraph4j | 1.6.0-beta5 |
+| **AI** | Spring AI (OpenAI) | 1.1.6 |
+| **Agent** | LangGraph4j | 1.8.16 |
 | **DB** | PostgreSQL | - |
 | **Build** | Gradle | 8.13 |
 

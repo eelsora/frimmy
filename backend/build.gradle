@@ -19,7 +19,7 @@ repositories {
 
 dependencyManagement {
     imports {
-        mavenBom "org.springframework.ai:spring-ai-bom:1.0.0"
+        mavenBom "org.springframework.ai:spring-ai-bom:1.1.6"
     }
 }
 
@@ -37,10 +37,10 @@ dependencies {
     implementation 'org.springframework.ai:spring-ai-starter-model-openai'
 
     // LangGraph4j 코어 — 에이전트 상태 그래프 정의 (노드, 엣지, 상태 관리)
-    implementation 'org.bsc.langgraph4j:langgraph4j-core:1.6.0-beta5'
+    implementation 'org.bsc.langgraph4j:langgraph4j-core:1.8.16'
 
     // LangGraph4j Spring AI 통합 — Spring AI ChatClient를 LangGraph4j 노드에서 사용
-    implementation 'org.bsc.langgraph4j:langgraph4j-spring-ai:1.6.0-beta5'
+    implementation 'org.bsc.langgraph4j:langgraph4j-spring-ai:1.8.16'
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
