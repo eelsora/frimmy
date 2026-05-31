@@ -19,9 +19,9 @@ export function TabBar({ active }: { active?: string }) {
   const pathname = usePathname();
   return (
     <div style={{
-      position: "absolute", bottom: 0, left: 0, right: 0, paddingBottom: 28,
+      position: "sticky", bottom: 0, left: 0, right: 0, marginTop: "auto", paddingBottom: 28,
       background: "linear-gradient(180deg, rgba(255,241,220,0) 0%, rgba(255,241,220,0.9) 30%, rgba(255,241,220,1) 60%)",
-      paddingTop: 18,
+      paddingTop: 18, zIndex: 10,
     }}>
       <div style={{
         margin: "0 16px", height: 64, background: "#fff", borderRadius: 26,

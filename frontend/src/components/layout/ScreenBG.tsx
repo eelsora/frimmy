@@ -24,6 +24,8 @@ export function ScreenBG({ children, gradient, style }: ScreenBGProps) {
         minHeight: "100%",
         overflow: "visible",
         position: "relative",
+        display: "flex",
+        flexDirection: "column",
         ...style,
       }}
     >
