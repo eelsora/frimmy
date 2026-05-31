@@ -1,50 +1,36 @@
-# Frimmy Frontend
-
-냉장고 재료 기반 AI 레시피 추천 서비스의 iOS 앱
-
-## Tech Stack
-
-| | Stack | Version |
-|---|---|---|
-| **Framework** | React Native (Expo) | 56.0 / RN 0.85 |
-| **Language** | TypeScript | 6.x |
-| **UI** | React | 19.2 |
-
-## 프로젝트 구조
-
-```
-frontend/
-├── App.tsx             # 앱 엔트리 포인트
-├── app.json            # Expo 설정
-├── assets/             # 아이콘, 이미지
-├── index.ts            # 등록 파일
-├── tsconfig.json
-└── package.json
-```
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
 
-### Prerequisites
-
-- Node.js 20+ (LTS)
-- Xcode (iOS 시뮬레이터 실행 시)
-- Expo Go 앱 (실제 디바이스 테스트 시)
-
-### 실행
+First, run the development server:
 
 ```bash
-npm install
-npm run ios        # iOS 시뮬레이터에서 실행
-npm run start      # Expo Dev Server (QR코드로 실기기 테스트)
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
 ```
 
-### 빌드
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-```bash
-# EAS Build (클라우드 빌드)
-npx eas build --platform ios
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-# 로컬 빌드 (Xcode 필요)
-npx expo prebuild --platform ios
-cd ios && pod install
-```
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+
+## Learn More
+
+To learn more about Next.js, take a look at the following resources:
+
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+
+## Deploy on Vercel
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
