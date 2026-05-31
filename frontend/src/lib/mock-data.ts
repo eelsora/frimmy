@@ -1,13 +1,12 @@
-// Mock data for the Frimmy UI prototype. No backend yet — these power the
-// screens with realistic sample content. Values lifted from the design source.
-import type { FoodName } from "@/components/mascot/FoodIcon";
+// Mock data for the Frimmy app prototype (no backend yet).
+import type { FoodName } from "./theme";
 
 export interface Ingredient {
   id: string;
   name: string;
   icon: FoodName;
   qty: string;
-  expiry: string; // e.g. "D-2"
+  expiry: string;
   warn?: boolean;
   cat: string;
 }
@@ -43,20 +42,8 @@ export const COOKABLE_NOW: RecipeCardData[] = [
   { id: "gambas", title: "감바스", time: 18, color: "#FF7A3D", missing: 1, hasPhoto: false, cuisine: "양식" },
 ];
 
-export interface RecipeIngredient {
-  f: FoodName;
-  n: string;
-  q: string;
-  have: boolean;
-}
-
-export interface RecipeStep {
-  n: number;
-  t: string;
-  sub: string;
-  done?: boolean;
-  current?: boolean;
-}
+export interface RecipeIngredient { f: FoodName; n: string; q: string; have: boolean }
+export interface RecipeStep { n: number; t: string; sub: string; done?: boolean; current?: boolean }
 
 export interface RecipeDetail {
   id: string;
@@ -70,7 +57,6 @@ export interface RecipeDetail {
   steps: RecipeStep[];
 }
 
-// The hero recipe used across detail / cooking / complete screens.
 export const FEATURED_RECIPE: RecipeDetail = {
   id: "tomato-egg",
   title: "토마토 계란볶음",

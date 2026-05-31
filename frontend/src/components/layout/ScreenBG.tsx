@@ -1,35 +1,26 @@
-import type { CSSProperties, ReactNode } from "react";
+import type { ReactNode } from "react";
+import { StyleSheet } from "react-native";
+import { LinearGradient } from "expo-linear-gradient";
+import { SafeAreaView, type Edge } from "react-native-safe-area-context";
+import { colors } from "@/lib/theme";
 
-/**
- * ScreenBG — root wrapper for every Frimmy screen. Applies the warm cream
- * gradient and the `.frimmy` base styles. Grows with its content so absolutely
- * positioned bottom bars sit after the content while short screens still fill
- * the device viewport. Ported from design-source/screens-a.jsx.
- */
 export interface ScreenBGProps {
   children: ReactNode;
-  gradient?: string;
-  style?: CSSProperties;
+  gradient?: readonly [string, string, ...string[]];
+  edges?: readonly Edge[];
 }
 
-export function ScreenBG({ children, gradient, style }: ScreenBGProps) {
-  const bg = gradient || "linear-gradient(180deg, #FFF1DC 0%, #FFE6C2 100%)";
+/** Full-screen warm-cream gradient background + safe area. Screens place a
+ *  ScrollView (and optional fixed footer / TabBar) as direct children. */
+export function ScreenBG({ children, gradient, edges = ["top", "bottom"] }: ScreenBGProps) {
+  const g = gradient ?? ([colors.bg, colors.bgDeep] as const);
   return (
-    <div
-      className="frimmy"
-      style={{
-        background: bg,
-        width: "100%",
-        height: "auto",
-        minHeight: "100%",
-        overflow: "visible",
-        position: "relative",
-        display: "flex",
-        flexDirection: "column",
-        ...style,
-      }}
-    >
-      {children}
-    </div>
+    <LinearGradient colors={g} start={{ x: 0, y: 0 }} end={{ x: 0, y: 1 }} style={styles.fill}>
+      <SafeAreaView style={styles.fill} edges={edges}>
+        {children}
+      </SafeAreaView>
+    </LinearGradient>
   );
 }
+
+const styles = StyleSheet.create({ fill: { flex: 1 } });

@@ -1,5 +1,8 @@
-// MiniMark — compact "F" letterform inside a chubby circle.
-// Used as the AI sender avatar in chat. Ported from design-source/brand.jsx.
+import { View, Text } from "react-native";
+import { LinearGradient } from "expo-linear-gradient";
+import Svg, { Path } from "react-native-svg";
+import { fonts } from "@/lib/theme";
+
 export type MiniMarkVariant = "carrot" | "sun" | "leaf" | "cream";
 
 export interface MiniMarkProps {
@@ -15,29 +18,38 @@ const palettes: Record<MiniMarkVariant, { bg1: string; bg2: string; stroke: stri
 };
 
 export function MiniMark({ size = 44, variant = "carrot" }: MiniMarkProps) {
-  const p = palettes[variant] || palettes.carrot;
+  const p = palettes[variant] ?? palettes.carrot;
   return (
-    <div style={{
-      width: size, height: size, borderRadius: size * 0.36,
-      background: `linear-gradient(140deg, ${p.bg1}, ${p.bg2})`,
-      position: "relative", display: "grid", placeItems: "center",
-      boxShadow: `0 ${size * 0.07}px 0 ${p.stroke}, 0 ${size * 0.14}px ${size * 0.32}px -${size * 0.1}px rgba(60,35,10,0.35)`,
-      flexShrink: 0,
-    }}>
-      <div style={{
-        position: "absolute", top: size * 0.08, left: size * 0.18,
-        width: size * 0.4, height: size * 0.18, borderRadius: "50%",
-        background: "rgba(255,255,255,0.55)", filter: "blur(2px)",
-      }} />
-      <svg width={size * 0.34} height={size * 0.34} viewBox="0 0 20 20"
-        style={{ position: "absolute", top: -size * 0.06, right: -size * 0.04, transform: "rotate(20deg)" }}>
-        <path d="M 10 18 C 2 12, 2 6, 8 4 C 14 5, 14 11, 10 18 Z" fill="#6CC04A" />
-        <path d="M 9 14 L 9 6" stroke="#2F7820" strokeWidth="1" strokeLinecap="round" fill="none" />
-      </svg>
-      <span style={{
-        fontFamily: "var(--font-display)", fontSize: size * 0.62, color: p.glyph,
-        lineHeight: 1, transform: "translateY(2%)", letterSpacing: "-0.06em",
-      }}>F</span>
-    </div>
+    <View
+      style={{
+        width: size,
+        height: size,
+        borderRadius: size * 0.36,
+        position: "relative",
+        shadowColor: p.stroke,
+        shadowOffset: { width: 0, height: size * 0.07 },
+        shadowOpacity: 1,
+        shadowRadius: 0,
+        elevation: 4,
+      }}
+    >
+      <LinearGradient
+        colors={[p.bg1, p.bg2]}
+        start={{ x: 0.1, y: 0 }}
+        end={{ x: 0.9, y: 1 }}
+        style={{ flex: 1, borderRadius: size * 0.36, alignItems: "center", justifyContent: "center" }}
+      >
+        {/* gloss */}
+        <View style={{ position: "absolute", top: size * 0.08, left: size * 0.18, width: size * 0.4, height: size * 0.18, borderRadius: size * 0.2, backgroundColor: "rgba(255,255,255,0.55)" }} />
+        {/* leaf accent */}
+        <View style={{ position: "absolute", top: -size * 0.06, right: -size * 0.04, transform: [{ rotate: "20deg" }] }}>
+          <Svg width={size * 0.34} height={size * 0.34} viewBox="0 0 20 20">
+            <Path d="M 10 18 C 2 12, 2 6, 8 4 C 14 5, 14 11, 10 18 Z" fill="#6CC04A" />
+            <Path d="M 9 14 L 9 6" stroke="#2F7820" strokeWidth="1" strokeLinecap="round" fill="none" />
+          </Svg>
+        </View>
+        <Text style={{ fontFamily: fonts.display, fontSize: size * 0.62, color: p.glyph, letterSpacing: -size * 0.03 }}>F</Text>
+      </LinearGradient>
+    </View>
   );
 }

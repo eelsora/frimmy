@@ -2,10 +2,10 @@
   "version": "0.0.1",
   "configurations": [
     {
-      "name": "frimmy-web",
+      "name": "frimmy-expo-web",
       "runtimeExecutable": "npm",
-      "runtimeArgs": ["--prefix", "frontend", "run", "dev"],
-      "port": 3000
+      "runtimeArgs": ["--prefix", "frontend", "run", "web", "--", "--port", "8081"],
+      "port": 8081
     }
   ]
 }

@@ -1,23 +1,33 @@
-import type { CSSProperties } from "react";
+import { View, Text } from "react-native";
+import { fonts } from "@/lib/theme";
 
-// YummyStamp — tilted sticker badge. Ported from design-source/brand.jsx.
 export interface YummyStampProps {
   text?: string;
   rot?: number;
   color?: string;
   size?: number;
-  style?: CSSProperties;
 }
 
-export function YummyStamp({ text = "yummy!", rot = -8, color = "#FFC93C", size = 28, style = {} }: YummyStampProps) {
+export function YummyStamp({ text = "yummy!", rot = -8, color = "#FFC93C", size = 28 }: YummyStampProps) {
   return (
-    <div style={{
-      display: "inline-flex", alignItems: "center", padding: `${size * 0.16}px ${size * 0.45}px`,
-      borderRadius: 999, background: color, color: "#2A1E0F",
-      border: "2.5px solid #2A1E0F", transform: `rotate(${rot}deg)`,
-      fontFamily: "var(--font-display)", fontSize: size, lineHeight: 1,
-      letterSpacing: "-0.02em", boxShadow: "4px 4px 0 #2A1E0F",
-      ...style,
-    }}>{text}</div>
+    <View
+      style={{
+        alignSelf: "flex-start",
+        paddingVertical: size * 0.16,
+        paddingHorizontal: size * 0.45,
+        borderRadius: 999,
+        backgroundColor: color,
+        borderWidth: 2.5,
+        borderColor: "#2A1E0F",
+        transform: [{ rotate: `${rot}deg` }],
+        shadowColor: "#2A1E0F",
+        shadowOffset: { width: 4, height: 4 },
+        shadowOpacity: 1,
+        shadowRadius: 0,
+        elevation: 4,
+      }}
+    >
+      <Text style={{ fontFamily: fonts.display, fontSize: size, color: "#2A1E0F", letterSpacing: -size * 0.02 }}>{text}</Text>
+    </View>
   );
 }
