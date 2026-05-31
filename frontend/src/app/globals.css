@@ -60,8 +60,8 @@ html, body {
 body {
   font-family: var(--font-body);
   color: var(--ink);
-  /* outside-the-phone backdrop */
-  background: #EFE2C9;
+  /* outside-the-phone backdrop — continuous with the screen background */
+  background: var(--bg);
   -webkit-font-smoothing: antialiased;
 }
 
@@ -154,7 +154,7 @@ body {
   display: grid;
   place-items: center;
   padding: 28px 16px;
-  background-color: #EFE2C9;
+  background-color: var(--bg);
 }
 
 .phone-frame {
