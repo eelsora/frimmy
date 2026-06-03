@@ -1,4 +1,4 @@
-package com.frimmy.backend.agent;
+package com.frimmy.agent;
 
 import org.springframework.stereotype.Component;
 

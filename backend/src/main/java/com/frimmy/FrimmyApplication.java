@@ -1,4 +1,4 @@
-package com.frimmy.backend;
+package com.frimmy;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

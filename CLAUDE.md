@@ -16,3 +16,5 @@
 |------|----------|------|------|
 | 2026-06-03 | 초기 구성 | 전체 | 하네스 신규 구축 |
 | 2026-06-03 | 프론트엔드 스택 변경: Next.js → React Native (Expo) | agents/frontend-dev, skills/frontend-dev, skills/frimmy-orchestrator, skills/qa-integration | 기술스택 전환 반영 |
+| 2026-06-04 | 백엔드 클린 아키텍처 적용 (presentation/application/domain/infrastructure) | skills/backend-dev | 계층별 패키지 분리 |
+| 2026-06-04 | 패키지명 변경: com.frimmy.backend → com.frimmy | 전체 백엔드 소스 | 패키지 간소화 |

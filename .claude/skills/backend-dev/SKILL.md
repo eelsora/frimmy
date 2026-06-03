@@ -7,30 +7,51 @@ description: "Frimmy 백엔드 개발 스킬. Spring Boot 3.4.5, Spring AI (GPT-
 
 Frimmy 백엔드의 Spring Boot + Spring AI 기반 개발 가이드.
 
-## 프로젝트 구조
+## 프로젝트 구조 (클린 아키텍처)
 
 ```
-backend/src/main/java/com/frimmy/backend/
-├── config/         # Spring AI 설정, CORS, 공통 설정
-├── ingredient/     # 재료 도메인 (Entity, Repository, Service, Controller)
-├── recipe/         # 레시피 추천 도메인 (Service, Controller)
-├── agent/          # LangGraph4j 에이전트 그래프
+backend/src/main/java/com/frimmy/
+├── presentation/      # REST Controller (외부 요청 수신)
+├── application/       # Service (비즈니스 로직, 유스케이스)
+├── domain/            # Entity (핵심 도메인 모델)
+├── infrastructure/    # Repository, 외부 연동 (DB, API)
+├── config/            # Spring 설정 (AI, CORS 등)
+├── agent/             # LangGraph4j 에이전트 그래프
 └── FrimmyApplication.java
 ```
 
+## 클린 아키텍처 규칙
+
+### 계층별 역할과 의존 방향
+
+```
+presentation → application → domain ← infrastructure
+```
+
+| 계층 | 패키지 | 역할 | 의존 대상 |
+|------|--------|------|----------|
+| **presentation** | `com.frimmy.presentation` | REST Controller, 요청/응답 DTO | application, domain |
+| **application** | `com.frimmy.application` | Service, 유스케이스 구현 | domain, infrastructure |
+| **domain** | `com.frimmy.domain` | Entity, 핵심 비즈니스 규칙 | 없음 (최하위) |
+| **infrastructure** | `com.frimmy.infrastructure` | Repository, 외부 API 연동 | domain |
+
+**핵심 원칙:**
+- domain은 다른 계층에 의존하지 않는다
+- presentation은 domain을 직접 참조할 수 있지만, infrastructure는 직접 참조하지 않는다
+- 새 기능 추가 시 반드시 이 계층 구조를 따른다
+
+### 새 도메인 추가 시
+
+```
+com.frimmy.domain/{Domain}.java                      # Entity
+com.frimmy.infrastructure/{Domain}Repository.java     # Repository
+com.frimmy.application/{Domain}Service.java           # Service
+com.frimmy.presentation/{Domain}Controller.java       # Controller
+com.frimmy.presentation/dto/{Domain}Request.java      # 요청 DTO (필요 시)
+com.frimmy.presentation/dto/{Domain}Response.java     # 응답 DTO (필요 시)
+```
+
 ## 개발 규칙
-
-### 패키지 구조
-
-도메인별 패키지로 분리한다. 새 도메인 추가 시:
-```
-com.frimmy.backend.{domain}/
-├── {Domain}Entity.java       # JPA Entity
-├── {Domain}Repository.java   # Spring Data JPA Repository
-├── {Domain}Service.java      # 비즈니스 로직
-├── {Domain}Controller.java   # REST Controller
-└── dto/                      # 요청/응답 DTO (필요 시)
-```
 
 ### REST API 설계
 
@@ -41,15 +62,16 @@ public class IngredientController {
 
     private final IngredientService ingredientService;
 
-    // 생성자 주입 (Lombok @RequiredArgsConstructor 또는 명시적 생성자)
+    // 생성자 주입
 
     @GetMapping
-    public List<IngredientEntity> getAll() {
+    public List<Ingredient> getAll() {
         return ingredientService.findAll();
     }
 
     @PostMapping
-    public IngredientEntity create(@RequestBody IngredientEntity ingredient) {
+    @ResponseStatus(HttpStatus.CREATED)
+    public Ingredient create(@RequestBody Ingredient ingredient) {
         return ingredientService.save(ingredient);
     }
 }
@@ -68,17 +90,14 @@ public class IngredientController {
 public class RecipeService {
     private final ChatClient chatClient;
 
-    public RecipeService(ChatClient.Builder chatClientBuilder) {
-        this.chatClient = chatClientBuilder.build();
+    public RecipeService(ChatClient chatClient) {
+        this.chatClient = chatClient;
     }
 
     public String recommendRecipe(List<String> ingredients) {
-        String prompt = String.format(
-            "다음 재료로 만들 수 있는 레시피를 추천해주세요: %s",
-            String.join(", ", ingredients)
-        );
         return chatClient.prompt()
-            .user(prompt)
+            .user("다음 재료로 만들 수 있는 레시피를 추천해주세요: "
+                + String.join(", ", ingredients))
             .call()
             .content();
     }
@@ -87,28 +106,7 @@ public class RecipeService {
 
 ### LangGraph4j 에이전트
 
-`backend/src/main/java/com/frimmy/backend/agent/` 하위에 에이전트 그래프를 정의한다. 노드(함수)와 엣지(전이)로 구성하며, 각 노드는 상태를 받아 다음 상태를 반환한다.
-
-### JPA Entity
-
-```java
-@Entity
-@Table(name = "ingredients")
-public class IngredientEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @Column(nullable = false)
-    private String name;
-
-    private String category;
-
-    private LocalDate expirationDate;
-
-    // Getters, Setters (또는 Lombok @Data)
-}
-```
+`com.frimmy.agent/` 하위에 에이전트 그래프를 정의한다. 노드(함수)와 엣지(전이)로 구성하며, 각 노드는 상태를 받아 다음 상태를 반환한다.
 
 ### 설정
 
@@ -129,9 +127,7 @@ Response: { "recipes": [{ "title": "...", "description": "...", ... }] }
 
 ## 빌드 검증
 
-코드 작성 후 반드시 확인:
+코드 작성 후 사용자에게 빌드 실행을 요청한다:
 ```bash
 cd backend && ./gradlew build
 ```
-
-빌드 에러 발생 시 즉시 수정한다.
