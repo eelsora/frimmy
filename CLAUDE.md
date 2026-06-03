@@ -2,7 +2,7 @@
 
 냉장고 재료 기반 AI 레시피 추천 서비스.
 
-- **프론트엔드**: `frontend/` — Next.js 16, React 19, TypeScript, Tailwind CSS 4
+- **프론트엔드**: `frontend/` — React Native (Expo 56), TypeScript
 - **백엔드**: `backend/` — Spring Boot 3.4.5, Spring AI (GPT-4o), LangGraph4j, PostgreSQL
 
 ## 하네스: Frimmy 개발
@@ -15,3 +15,4 @@
 | 날짜 | 변경 내용 | 대상 | 사유 |
 |------|----------|------|------|
 | 2026-06-03 | 초기 구성 | 전체 | 하네스 신규 구축 |
+| 2026-06-03 | 프론트엔드 스택 변경: Next.js → React Native (Expo) | agents/frontend-dev, skills/frontend-dev, skills/frimmy-orchestrator, skills/qa-integration | 기술스택 전환 반영 |

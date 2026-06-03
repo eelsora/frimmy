@@ -1,6 +1,6 @@
 ---
 name: frimmy-orchestrator
-description: "Frimmy 냉장고 재료 기반 AI 레시피 추천 서비스 개발 오케스트레이터. 프론트엔드(Next.js), 백엔드(Spring Boot), AI 레시피 추천 기능 구현을 조율한다. Frimmy 기능 개발, 페이지 구현, API 개발, 재료 관리, 레시피 추천, 쇼핑 리스트, 에이전트 그래프 구현 요청 시 이 스킬을 사용. 후속 작업: 결과 수정, 부분 재실행, 업데이트, 보완, 다시 실행, 이전 결과 개선, 버그 수정 요청 시에도 반드시 이 스킬을 사용."
+description: "Frimmy 냉장고 재료 기반 AI 레시피 추천 서비스 개발 오케스트레이터. 프론트엔드(React Native/Expo), 백엔드(Spring Boot), AI 레시피 추천 기능 구현을 조율한다. Frimmy 기능 개발, 화면 구현, API 개발, 재료 관리, 레시피 추천, 쇼핑 리스트, 에이전트 그래프 구현 요청 시 이 스킬을 사용. 후속 작업: 결과 수정, 부분 재실행, 업데이트, 보완, 다시 실행, 이전 결과 개선, 버그 수정 요청 시에도 반드시 이 스킬을 사용."
 ---
 
 # Frimmy Orchestrator
@@ -15,7 +15,7 @@ description: "Frimmy 냉장고 재료 기반 AI 레시피 추천 서비스 개�
 
 | 에이전트 | subagent_type | model | 역할 | 스킬 | 출력 |
 |---------|--------------|-------|------|------|------|
-| frontend-dev | general-purpose | opus | Next.js 프론트엔드 개발 | frontend-dev | frontend/src/ 하위 파일 |
+| frontend-dev | general-purpose | opus | React Native (Expo) 모바일 앱 개발 | frontend-dev | frontend/src/ 하위 파일 |
 | backend-dev | general-purpose | opus | Spring Boot 백엔드 + AI 개발 | backend-dev | backend/src/ 하위 파일 |
 | qa | general-purpose | opus | 통합 정합성 검증 | qa-integration | _workspace/ QA 보고서 |
 
@@ -152,7 +152,7 @@ Agent(
 1. 사용자가 "레시피 추천 API와 결과 페이지 구현해줘" 요청
 2. Phase 1에서 API 계약 초안 작성 (POST /api/recipes/recommend)
 3. Phase 2에서 backend-dev가 RecipeService + Controller 구현
-4. Phase 3에서 frontend-dev가 레시피 추천 페이지 + API 연동 구현
+4. Phase 3에서 frontend-dev가 레시피 추천 화면 + API 연동 구현
 5. Phase 4에서 qa가 API 응답 shape ↔ 프론트 타입 교차 검증
 6. Phase 5에서 결과 요약 보고
 

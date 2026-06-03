@@ -24,18 +24,18 @@ description: "Frimmy 프론트엔드-백엔드 통합 정합성 검증 스킬. A
 - `LocalDate` → ISO 8601 문자열 변환 확인
 - Spring AI 응답이 String인지 구조화된 JSON인지 확인
 
-### 2. 라우트 경로 검증
+### 2. 네비게이션 경로 검증
 
 **절차:**
-1. `frontend/src/app/` 하위 `page.tsx` 파일 경로에서 URL 패턴 추출
-2. 코드 내 `href=`, `router.push(`, `Link` 컴포넌트의 경로 수집
-3. 각 링크가 실제 존재하는 page와 매칭되는지 확인
+1. `frontend/src/app/` 하위 Expo Router 화면 파일에서 라우트 패턴 추출
+2. 코드 내 `router.push(`, `router.replace(`, `Link` 컴포넌트, `href` 값 수집
+3. 각 네비게이션 대상이 실제 존재하는 화면과 매칭되는지 확인
 
 ### 3. 빌드 검증
 
 **프론트엔드:**
 ```bash
-cd frontend && npm run build
+cd frontend && npx expo start
 ```
 
 **백엔드:**
@@ -87,5 +87,5 @@ cd backend && ./gradlew build
 | 심각도 | 기준 | 예시 |
 |--------|------|------|
 | Critical | 런타임 에러/빌드 실패 | API 응답 shape 불일치로 TypeError |
-| Major | 기능 동작 오류 | 잘못된 라우트 경로로 404 |
+| Major | 기능 동작 오류 | 잘못된 네비게이션 경로 |
 | Minor | 코드 품질/일관성 | 미사용 타입 정의 |
