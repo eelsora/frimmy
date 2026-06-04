@@ -9,8 +9,14 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: update
+      # 스키마 생성/변경은 Flyway가 담당. JPA는 매핑 검증만 수행.
+      ddl-auto: validate
     open-in-view: false
+
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+    baseline-on-migrate: false
 
   ai:
     openai:

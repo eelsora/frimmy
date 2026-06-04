@@ -2,6 +2,8 @@ services:
   db:
     image: postgres:17
     container_name: frimmy-db
+    # 컨테이너/호스트가 죽어도 자동 재시작 (직접 stop 한 경우는 제외)
+    restart: unless-stopped
     environment:
       POSTGRES_DB: frimmy
       POSTGRES_USER: frimmy
@@ -9,7 +11,13 @@ services:
     ports:
       - "5432:5432"
     volumes:
+      # 네임드 볼륨 — 컨테이너가 삭제/재생성돼도 데이터 유지 (down -v 할 때만 삭제됨)
       - frimmy-pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U frimmy -d frimmy"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
 volumes:
   frimmy-pgdata:

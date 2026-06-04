@@ -34,6 +34,10 @@ dependencies {
     // PostgreSQL JDBC 드라이버 (런타임에만 필요)
     runtimeOnly 'org.postgresql:postgresql'
 
+    // DB 스키마 버전 관리 (Flyway) — 버전별 마이그레이션으로 스키마 추적
+    implementation 'org.flywaydb:flyway-core'
+    implementation 'org.flywaydb:flyway-database-postgresql'
+
     // OpenAI ChatClient 자동 설정 (GPT 모델로 레시피 추천)
     implementation 'org.springframework.ai:spring-ai-starter-model-openai'
 
