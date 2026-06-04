@@ -8,6 +8,6 @@
 Thumbs.db
 
 # Environment
-.env
+backend/.env
 .env.local
 .env.*.local

@@ -6,9 +6,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-
 @Entity
 public class Ingredient {
 
@@ -16,34 +13,29 @@ public class Ingredient {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false, unique = true)
+    private String code;
+
     @Column(nullable = false)
     private String name;
 
     private String category;
 
-    private Double quantity;
-
-    private String unit;
-
-    private LocalDate expirationDate;
-
-    @Column(updatable = false)
-    private LocalDateTime createdAt;
-
     protected Ingredient() {
     }
 
-    public Ingredient(String name, String category, Double quantity, String unit, LocalDate expirationDate) {
+    public Ingredient(String code, String name, String category) {
+        this.code = code;
         this.name = name;
         this.category = category;
-        this.quantity = quantity;
-        this.unit = unit;
-        this.expirationDate = expirationDate;
-        this.createdAt = LocalDateTime.now();
     }
 
     public Long getId() {
         return id;
+    }
+
+    public String getCode() {
+        return code;
     }
 
     public String getName() {
@@ -54,20 +46,8 @@ public class Ingredient {
         return category;
     }
 
-    public Double getQuantity() {
-        return quantity;
-    }
-
-    public String getUnit() {
-        return unit;
-    }
-
-    public LocalDate getExpirationDate() {
-        return expirationDate;
-    }
-
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public void setName(String name) {
@@ -76,17 +56,5 @@ public class Ingredient {
 
     public void setCategory(String category) {
         this.category = category;
-    }
-
-    public void setQuantity(Double quantity) {
-        this.quantity = quantity;
-    }
-
-    public void setUnit(String unit) {
-        this.unit = unit;
-    }
-
-    public void setExpirationDate(LocalDate expirationDate) {
-        this.expirationDate = expirationDate;
     }
 }

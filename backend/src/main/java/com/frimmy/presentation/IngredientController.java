@@ -39,6 +39,11 @@ public class IngredientController {
         return ingredientService.findById(id);
     }
 
+    @GetMapping("/code/{code}")
+    public Ingredient getByCode(@PathVariable String code) {
+        return ingredientService.findByCode(code);
+    }
+
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Ingredient create(@RequestBody Ingredient ingredient) {

@@ -3,12 +3,12 @@ package com.frimmy.infrastructure;
 import com.frimmy.domain.Ingredient;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 public interface IngredientRepository extends JpaRepository<Ingredient, Long> {
 
-    List<Ingredient> findByCategory(String category);
+    Optional<Ingredient> findByCode(String code);
 
-    List<Ingredient> findByExpirationDateBefore(LocalDate date);
+    List<Ingredient> findByCategory(String category);
 }

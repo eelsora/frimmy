@@ -3,13 +3,12 @@ spring:
     name: frimmy-backend
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/${POSTGRES_DB:frimmy}
-    username: ${POSTGRES_USER:frimmy}
-    password: ${POSTGRES_PASSWORD:frimmy}
+    url: jdbc:postgresql://localhost:5432/${POSTGRES_DB}
+    username: ${POSTGRES_USER}
+    password: ${POSTGRES_PASSWORD}
 
   jpa:
     hibernate:
-      # 스키마 생성/변경은 Flyway가 담당. JPA는 매핑 검증만 수행.
       ddl-auto: validate
     open-in-view: false
 
