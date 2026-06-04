@@ -165,7 +165,7 @@ export function FoodIcon({ name, size = 44 }: FoodIconProps) {
       return wrap(<G>
         <GroundShadow cx={24} cy={42} rx={14} />
         <Circle cx="16" cy="20" r="10" fill="url(#g-meat)" />
-        <G rotation={20} originX={30} originY={27}>
+        <G transform="rotate(20 30 27)">
           <Rect x="20" y="22" width="20" height="10" rx="5" fill="url(#g-meat)" />
         </G>
         <Ellipse cx="36" cy="34" rx="3" ry="2" fill="#F4F1E8" />
@@ -192,7 +192,7 @@ export function FoodIcon({ name, size = 44 }: FoodIconProps) {
     case "lemon":
       return wrap(<G>
         <GroundShadow />
-        <G rotation={-15} originX={24} originY={26}>
+        <G transform="rotate(-15 24 26)">
           <Ellipse cx="24" cy="26" rx="15" ry="13" fill="url(#g-yolk)" />
         </G>
         <Path d="M 38 18 Q 42 14 40 12" stroke="#D89500" strokeWidth="2" strokeLinecap="round" fill="none" />

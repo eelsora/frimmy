@@ -24,7 +24,7 @@ const DEFAULT_ITEMS: ConfettiItem[] = [
 export function FoodConfetti({ items }: { items?: ConfettiItem[] }) {
   const list = items ?? DEFAULT_ITEMS;
   return (
-    <View pointerEvents="none" style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0 }}>
+    <View style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0, pointerEvents: "none" }}>
       {list.map((it, i) => (
         <View key={i} style={{ position: "absolute", left: `${it.x}%` as DimensionValue, top: `${it.y}%` as DimensionValue, opacity: it.op }}>
           <Floaty duration={3000 + (i % 4) * 600} delay={i * 300} style={{ transform: [{ rotate: `${it.r}deg` }, { scale: it.s }] }}>

@@ -26,11 +26,7 @@ export function MiniMark({ size = 44, variant = "carrot" }: MiniMarkProps) {
         height: size,
         borderRadius: size * 0.36,
         position: "relative",
-        shadowColor: p.stroke,
-        shadowOffset: { width: 0, height: size * 0.07 },
-        shadowOpacity: 1,
-        shadowRadius: 0,
-        elevation: 4,
+        boxShadow: `0px ${size * 0.07}px 0px ${p.stroke}`,
       }}
     >
       <LinearGradient

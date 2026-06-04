@@ -39,40 +39,16 @@ export const fonts = {
   handBold: "Gaegu_700Regular",
 } as const;
 
-// Soft card / chip shadows (RN: iOS shadow* + Android elevation).
+// Soft card / chip shadows (cross-platform boxShadow, supported in RN 0.76+).
 export const shadow = {
-  card: {
-    shadowColor: "#3C230A",
-    shadowOffset: { width: 0, height: 10 },
-    shadowOpacity: 0.16,
-    shadowRadius: 16,
-    elevation: 6,
-  } as ViewStyle,
-  chip: {
-    shadowColor: "#281808",
-    shadowOffset: { width: 0, height: 3 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 2,
-  } as ViewStyle,
-  deep: {
-    shadowColor: "#3C230A",
-    shadowOffset: { width: 0, height: 18 },
-    shadowOpacity: 0.28,
-    shadowRadius: 28,
-    elevation: 12,
-  } as ViewStyle,
+  card: { boxShadow: "0px 10px 28px -12px rgba(60,35,10,0.20), 0px 2px 6px rgba(60,35,10,0.06)" } as ViewStyle,
+  chip: { boxShadow: "0px 3px 6px -2px rgba(40,24,8,0.14)" } as ViewStyle,
+  deep: { boxShadow: "0px 22px 44px -16px rgba(60,35,10,0.28)" } as ViewStyle,
 };
 
 /** "Chubby" solid bottom edge used on primary buttons (web: 0 8px 0 color). */
 export function popShadow(color: string, height = 8): ViewStyle {
-  return {
-    shadowColor: color,
-    shadowOffset: { width: 0, height },
-    shadowOpacity: 1,
-    shadowRadius: 0,
-    elevation: height,
-  };
+  return { boxShadow: `0px ${height}px 0px ${color}` };
 }
 
 /** Display (Jua) text helper. */

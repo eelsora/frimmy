@@ -20,11 +20,7 @@ export function YummyStamp({ text = "yummy!", rot = -8, color = "#FFC93C", size 
         borderWidth: 2.5,
         borderColor: "#2A1E0F",
         transform: [{ rotate: `${rot}deg` }],
-        shadowColor: "#2A1E0F",
-        shadowOffset: { width: 4, height: 4 },
-        shadowOpacity: 1,
-        shadowRadius: 0,
-        elevation: 4,
+        boxShadow: "4px 4px 0px #2A1E0F",
       }}
     >
       <Text style={{ fontFamily: fonts.display, fontSize: size, color: "#2A1E0F", letterSpacing: -size * 0.02 }}>{text}</Text>
