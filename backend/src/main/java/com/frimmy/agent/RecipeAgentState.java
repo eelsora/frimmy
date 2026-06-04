@@ -1,4 +1,4 @@
-package com.frimmy.backend.agent;
+package com.frimmy.agent;
 
 import org.bsc.langgraph4j.state.AgentState;
 

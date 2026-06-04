@@ -1,5 +1,6 @@
-package com.frimmy.backend.recipe;
+package com.frimmy.presentation;
 
+import com.frimmy.application.RecipeService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 

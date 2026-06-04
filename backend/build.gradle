@@ -5,6 +5,7 @@ plugins {
 }
 
 group = 'com.frimmy'
+// 메인 클래스: com.frimmy.FrimmyApplication
 version = '0.0.1-SNAPSHOT'
 
 java {
@@ -41,6 +42,9 @@ dependencies {
 
     // LangGraph4j Spring AI 통합 — Spring AI ChatClient를 LangGraph4j 노드에서 사용
     implementation 'org.bsc.langgraph4j:langgraph4j-spring-ai:1.8.16'
+
+    // Swagger UI (API 문서 자동 생성)
+    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.6'
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'

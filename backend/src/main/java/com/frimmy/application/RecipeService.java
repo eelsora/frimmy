@@ -1,4 +1,4 @@
-package com.frimmy.backend.recipe;
+package com.frimmy.application;
 
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.stereotype.Service;

@@ -1,4 +1,4 @@
-package com.frimmy.backend.config;
+package com.frimmy.config;
 
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.context.annotation.Bean;
