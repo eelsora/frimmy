@@ -9,6 +9,17 @@
 
 ---
 
+## 0. 환경변수 설정
+
+프로젝트 루트에 `.env` 파일을 생성한다 (`.env.example` 참고):
+
+```bash
+cp .env.example .env
+# .env 파일을 열고 실제 값으로 수정
+```
+
+---
+
 ## 1. Docker DB 실행
 
 ```bash

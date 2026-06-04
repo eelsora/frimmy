@@ -3,9 +3,9 @@ spring:
     name: frimmy-backend
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/frimmy
-    username: ${DB_USERNAME:frimmy}
-    password: ${DB_PASSWORD:frimmy}
+    url: jdbc:postgresql://localhost:5432/${POSTGRES_DB:frimmy}
+    username: ${POSTGRES_USER:frimmy}
+    password: ${POSTGRES_PASSWORD:frimmy}
 
   jpa:
     hibernate:
